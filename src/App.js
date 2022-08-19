@@ -8,6 +8,7 @@ function App() {
   let bigMeals = useRef(null);
   let leftovers = useRef(null);
 
+  // on mount, get data from trello
   useEffect(() => {
     fetch(`https://api.trello.com/1/boards/ymfl7XFT/cards?key=${process.env.REACT_APP_TRELLO_KEY}&token=${process.env.REACT_APP_TRELLO_TOKEN}`)
       .then(res => res.json())
@@ -17,6 +18,11 @@ function App() {
         leftovers.current = json.filter(recipe => recipe.labels.find(label => label.name === "Leftovers"));
       });
   }, []);
+
+  // when you select a random recipe, scroll to top of page
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [randomRecipe])
 
   function getRandomBigMeal(){
     const randomBigMeal = bigMeals.current[Math.floor(Math.random()*bigMeals.current.length)];
@@ -50,7 +56,6 @@ function App() {
       </div>
     );
   } else {
-    /* TODO: scroll to top when rendering new recipe */
     return (
       <div className="container">
         <h1>{randomRecipe.name}</h1>
