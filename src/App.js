@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
   const [cards, setCards] = useState(null);
@@ -49,10 +50,11 @@ function App() {
       </div>
     );
   } else {
+    /* TODO: scroll to top when rendering new recipe */
     return (
       <div className="container">
         <h1>{randomRecipe.name}</h1>
-        <p>{randomRecipe.desc}</p> {/* todo: parse markdown */}
+        <ReactMarkdown>{randomRecipe.desc}</ReactMarkdown>
 
         <div className="d-flex flex-column align-items-start">
           <a href={randomRecipe.url} className="btn btn-secondary mb-3">See Recipe on Trello</a>
