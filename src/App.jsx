@@ -11,7 +11,7 @@ function App() {
 
   // on mount, get data from trello
   useEffect(() => {
-    fetch(`https://api.trello.com/1/boards/ymfl7XFT/cards?key=${import.meta.env.REACT_APP_TRELLO_KEY}&token=${import.meta.env.REACT_APP_TRELLO_TOKEN}`)
+    fetch(`https://api.trello.com/1/boards/ymfl7XFT/cards?key=${import.meta.env.VITE_TRELLO_KEY}&token=${import.meta.env.VITE_TRELLO_TOKEN}`)
       .then(res => res.json())
       .then(json => {
         setCards(json);
