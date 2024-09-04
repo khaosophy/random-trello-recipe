@@ -1,6 +1,7 @@
-import './App.css';
 import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
+import './App.css';
+import Layout from './components/Layout';
 
 function App() {
   const [cards, setCards] = useState(null);
@@ -37,7 +38,7 @@ function App() {
   if(!cards) return null;
   if(!randomRecipe) {
     return (
-      <div className="container">
+      <Layout>
         <h1>What type of meal do you want?</h1>
         <div className="mt-3 d-flex flex-column align-items-start">
           <button
@@ -53,11 +54,11 @@ function App() {
             Random Meal with Leftovers
           </button>
         </div>
-      </div>
+      </Layout>
     );
   } else {
     return (
-      <div className="container">
+      <Layout>
         <h1>{randomRecipe.name}</h1>
         <ReactMarkdown>{randomRecipe.desc}</ReactMarkdown>
 
@@ -66,7 +67,7 @@ function App() {
           <button className="btn btn-primary mb-3" onClick={getRandomBigMeal}>Get a Different Big Meal</button>
           <button className="btn btn-primary" onClick={getRandomLeftovers}>Get a Different Meal with Leftovers</button>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
